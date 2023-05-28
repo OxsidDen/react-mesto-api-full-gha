@@ -1,8 +1,7 @@
 class Api {
 
-    constructor({baseUrl, authorization}){
+    constructor({baseUrl}){
         this._baseUrl = baseUrl;
-        this._authorization = authorization;
     }
 
     getProfile = () => {
