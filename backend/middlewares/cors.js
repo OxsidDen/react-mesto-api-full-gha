@@ -1,6 +1,9 @@
 const allowedCors = [
   'https://oxsid.nomoredomains.rocks',
   'http://oxsid.nomoredomains.rocks',
+  'https://api.oxsid.nomoredomains.rocks',
+  'http://api.oxsid.nomoredomains.rocks',
+  'https://oxsid.nomoredomains.rocks/signup',
   'https://localhost:3109',
   'http://localhost:3109',
 ];
