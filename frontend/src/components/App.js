@@ -146,7 +146,7 @@ function App() {
       .then(() => {
         setCorect(true);
         setInfoToolOpen(true);
-        navigate('/sign-in', {replace: true}) 
+        navigate('/signin', {replace: true}) 
       })
         .catch((err) => {
           setCorect(false);
@@ -201,11 +201,11 @@ function App() {
           email={email}
         />
       <Routes>
-        <Route path='/sign-in' element={
+        <Route path='/signin' element={
           <Login 
             handleLogin={handleLogin}
           />}/>
-        <Route path='/sign-up' element={
+        <Route path='/signup' element={
           <Register
             handleRejester={handleRejister}
         />}/>

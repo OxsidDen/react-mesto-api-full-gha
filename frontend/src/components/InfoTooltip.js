@@ -1,4 +1,3 @@
-
 function InfoTooltip(props){
     return(
         <div className={`popup ${props.isOpen ? 'popup_opend':''}`}>

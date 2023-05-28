@@ -7,8 +7,9 @@ class Api {
 
     getProfile = () => {
         return fetch(this._baseUrl + '/users/me', {
+            credentials: 'include',
             headers: {
-                authorization:  this._authorization
+                "Content-Type": "application/json",
             }
         })
         .then(res => this._chekStatus(res))
@@ -16,8 +17,9 @@ class Api {
     
     getCards = () => {
        return  fetch(this._baseUrl + '/cards', {
+            credentials: 'include',
             headers: {
-                authorization:  this._authorization
+                "Content-Type": "application/json",
             }
         })
         .then(res => this._chekStatus(res))
@@ -26,10 +28,10 @@ class Api {
     changeProfile = (data) => {
         return  fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
-             headers: {
-                 authorization: this._authorization,
+            credentials: 'include',
+            headers: {
                  'Content-Type': 'application/json'
-             },
+            },
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -41,14 +43,15 @@ class Api {
     addNewPost = (data) => {
         return  fetch(this._baseUrl + '/cards', {
             method: 'POST',
-             headers: {
+            credentials: 'include',
+            headers: {
                  authorization:  this._authorization,
                  'Content-Type': 'application/json'
-             },
+            },
             body: JSON.stringify({
                 link: data.link,
                 name: data.place,
-              }) 
+            }) 
          })
             .then(res => this._chekStatus(res))
         };
@@ -56,8 +59,9 @@ class Api {
     deletCard = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id, {
             method: 'DELETE',
+            credentials: 'include',
              headers: {
-                 authorization:  this._authorization,
+                "Content-Type": "application/json",
              }
         })
         .then(res => this._chekStatus(res))
@@ -66,8 +70,8 @@ class Api {
     changeAvatar = (data) => {
     return  fetch(this._baseUrl + '/users/me/avatar', {
         method: 'PATCH',
+        credentials: 'include',
         headers: {
-            authorization: this._authorization,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -80,8 +84,9 @@ class Api {
     putLike = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'PUT',
+            credentials: 'include',
             headers: {
-                authorization: this._authorization,
+                "Content-Type": "application/json",
             }
         })
         .then(res => this._chekStatus(res))
@@ -90,8 +95,9 @@ class Api {
     deletLike = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
-                authorization: this._authorization,
+                "Content-Type": "application/json",
             }
         })
             .then(res => this._chekStatus(res))
@@ -102,7 +108,7 @@ class Api {
             return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
                 method: 'PUT',
                 headers: {
-                    authorization: this._authorization,
+                    "Content-Type": "application/json",
                 }
             })
             .then(res => this._chekStatus(res))
@@ -110,8 +116,9 @@ class Api {
         else{
             return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
-                    authorization: this._authorization,
+                    "Content-Type": "application/json",
                 }
             })
                 .then(res => this._chekStatus(res))
@@ -123,8 +130,7 @@ class Api {
     }
 }
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
-    authorization: '08c90c1a-1998-40ee-b8a2-c5f50d26b954'
+    baseUrl: 'https://api.oxsid.nomoredomains.rocks',
 });
 
 export default api;
