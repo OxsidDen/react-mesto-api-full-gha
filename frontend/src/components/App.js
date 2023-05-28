@@ -8,7 +8,7 @@ import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/Api";
-import {CurrentUserContext, user} from "../contexts/CurrentUserContext"
+import {CurrentUserContext} from "../contexts/CurrentUserContext"
 import React from 'react';
 import { Route, Routes, useNavigate} from 'react-router-dom';
 import Login from './Login.js';
@@ -23,7 +23,10 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen ] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState(user);
+  const [currentUser, setCurrentUser] = useState({
+    name: "Жак-Ив Кусто",
+    about: "Исследователь океана",
+  });
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate(false);

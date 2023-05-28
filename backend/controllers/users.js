@@ -11,7 +11,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find()
-    .then((users) => res.status(OK_STATUS_CODE).send({ data: users }))
+    .then((users) => res.status(OK_STATUS_CODE).send({ users }))
     .catch(next);
 };
 
@@ -22,7 +22,7 @@ const getUserById = (req, res, next) => {
       if (!user) {
         throw new NotFoundErr('User by specified _id not found');
       }
-      return res.status(OK_STATUS_CODE).send({ data: user });
+      return res.status(OK_STATUS_CODE).send({ user });
     })
     .catch(next);
 };
@@ -35,7 +35,7 @@ const createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => res.status(OK_STATUS_CODE).send({ data: user }))
+    .then((user) => res.status(OK_STATUS_CODE).send({ user }))
     .catch((err) => {
       if (err.code === 11000) {
         next(new ExistingError('User with this email is already registered'));
@@ -56,7 +56,7 @@ const updateProfile = (req, res, next) => {
       if (!user) {
         throw new NotFoundErr('User by specified _id not found');
       }
-      res.status(OK_STATUS_CODE).send({ data: user });
+      res.status(OK_STATUS_CODE).send({ user });
     })
     .catch((err) => {
       if (err instanceof ValidationError) {
@@ -72,7 +72,7 @@ const updateAvatar = (req, res, next) => {
     { avatar },
     { new: true, runValidators: true },
   )
-    .then((user) => res.status(OK_STATUS_CODE).send({ data: user }))
+    .then((user) => res.status(OK_STATUS_CODE).send({ user }))
     .catch((err) => {
       if (err instanceof ValidationError) {
         next(new IncorrectDataErr('The entered data is not correct'));
@@ -93,7 +93,7 @@ const login = (req, res, next) => {
         { expiresIn: '7d' },
       );
       res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true });
-      res.status(OK_STATUS_CODE).send({ _id: token });
+      res.status(OK_STATUS_CODE).send({ token });
     })
     .catch(next);
 };

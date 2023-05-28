@@ -17,7 +17,7 @@ const postCard = (req, res, next) => {
   const { name, link } = req.body;
   const owner = getOwnerId(req);
   Card.create({ name, link, owner })
-    .then((card) => res.status(OK_STATUS_CODE).send({ data: card }))
+    .then((card) => res.status(OK_STATUS_CODE).send({ card }))
     .catch((err) => {
       if (err instanceof ValidationError) {
         next(new IncorrectDataErr('Check the correctness of the data'));
