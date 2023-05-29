@@ -4,8 +4,8 @@ const allowedCors = [
   'https://api.oxsid.nomoredomains.rocks',
   'http://api.oxsid.nomoredomains.rocks',
   'https://oxsid.nomoredomains.rocks',
-  'https://localhost:3109',
-  'http://localhost:3109',
+  'https://localhost:3000',
+  'http://localhost:3000',
 ];
 
 const corsHandler = (req, res, next) => {

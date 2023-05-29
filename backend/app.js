@@ -10,7 +10,7 @@ const { errorMiddlewares } = require('./middlewares/errors');
 const cors = require('./middlewares/cors');
 
 const app = express();
-const { PORT = 3109 } = process.env;
+const { PORT = 3000 } = process.env;
 
 mogoose.connect('mongodb://localhost:27017/mestodb');
 
