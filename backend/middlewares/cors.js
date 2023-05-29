@@ -3,7 +3,7 @@ const allowedCors = [
   'http://oxsid.nomoredomains.rocks',
   'https://api.oxsid.nomoredomains.rocks',
   'http://api.oxsid.nomoredomains.rocks',
-  'https://oxsid.nomoredomains.rocks/signup',
+  'https://oxsid.nomoredomains.rocks',
   'https://localhost:3109',
   'http://localhost:3109',
 ];
@@ -13,6 +13,7 @@ const corsHandler = (req, res, next) => {
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
+  res.header('Access-Control-Allow-Credentials', true);
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
