@@ -7,9 +7,7 @@ const { signinValifator, signupValidator } = require('../middlewares/userValidat
 const cardsRouter = require('./cards');
 const userRouter = require('./users');
 const { requestLogger, errorLogger } = require('../middlewares/logger');
-const corsHandler = require('../middlewares/cors');
 
-routes.use(corsHandler);
 routes.use(requestLogger);
 routes.get('/crash-test', () => {
   setTimeout(() => {
