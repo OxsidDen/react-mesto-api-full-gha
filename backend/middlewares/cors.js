@@ -3,7 +3,6 @@ const allowedCors = [
   'http://oxsid.nomoredomains.rocks',
   'https://api.oxsid.nomoredomains.rocks',
   'http://api.oxsid.nomoredomains.rocks',
-  'https://oxsid.nomoredomains.rocks',
   'https://localhost:3000',
   'http://localhost:3000',
 ];
