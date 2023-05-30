@@ -5,7 +5,7 @@ function Header(props){
     const navigate = useNavigate();
     function signOut(){
         localStorage.removeItem('jwt');
-        navigate('/sign-in');
+        navigate('/signin');
     }
     return(
         <header className="header">
@@ -15,8 +15,8 @@ function Header(props){
                     <p className='header__email'>{props.email}</p>
                     <button onClick={signOut} className="header__signout">Выйти</button>
                 </div>}
-                {location.pathname === '/sign-up' && <Link to='/sign-in' className='header__button'>Войти</Link>}
-                {location.pathname === '/sign-in' && <Link to='/sign-up' className='header__button'>Регистрация</Link>}
+                {location.pathname === '/signup' && <Link to='/signin' className='header__button'>Войти</Link>}
+                {location.pathname === '/signin' && <Link to='/signup' className='header__button'>Регистрация</Link>}
         </header>
     )
 }
