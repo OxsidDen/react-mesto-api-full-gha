@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.20.171
+IP-адрес 158.160.54.174
 
 Frontend https://oxsid.nomoredomains.rocks/
 
