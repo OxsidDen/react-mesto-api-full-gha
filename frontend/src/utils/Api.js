@@ -1,13 +1,13 @@
 class Api {
 
-    constructor({baseUrl, authorization}){
+    constructor({baseUrl, credentials}){
         this._baseUrl = baseUrl;
-        this._authorization = authorization;
+        this._credentials = credentials;
     }
 
     getProfile = () => {
         return fetch(this._baseUrl + '/users/me', {
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                 authorization:  this._authorization
             }
@@ -17,8 +17,8 @@ class Api {
     
     getCards = () => {
        return  fetch(this._baseUrl + '/cards', {
-            credentials: 'include',
-            headers: {
+        credentials: this._credentials,
+        headers: {
                 authorization:  this._authorization
             }
         })
@@ -28,7 +28,7 @@ class Api {
     changeProfile = (data) => {
         return  fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                 authorization: this._authorization,
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ class Api {
     addNewPost = (data) => {
         return  fetch(this._baseUrl + '/cards', {
             method: 'POST',
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                 authorization:  this._authorization,
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ class Api {
     deletCard = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id, {
             method: 'DELETE',
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                authorization:  this._authorization,
             }
@@ -71,7 +71,7 @@ class Api {
     changeAvatar = (data) => {
     return  fetch(this._baseUrl + '/users/me/avatar', {
         method: 'PATCH',
-        credentials: 'include',
+        credentials: this._credentials,
         headers: {
             authorization: this._authorization,
             'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ class Api {
     putLike = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'PUT',
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                 authorization: this._authorization,
             }
@@ -97,7 +97,7 @@ class Api {
     deletLike = (id) => {
         return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
             method: 'DELETE',
-            credentials: 'include',
+            credentials: this._credentials,
             headers: {
                 authorization: this._authorization,
             }
@@ -109,7 +109,7 @@ class Api {
         if (!isLiked){
             return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
                 method: 'PUT',
-                credentials: 'include',
+                credentials: this._credentials,
                 headers: {
                     authorization: this._authorization,
                 }
@@ -119,7 +119,7 @@ class Api {
         else{
             return  fetch(this._baseUrl + '/cards/' + id + '/likes', {
                 method: 'DELETE',
-                credentials: 'include',
+                credentials: this._credentials,
                 headers: {
                     authorization: this._authorization,
                 }
@@ -134,7 +134,7 @@ class Api {
 }
 const api = new Api({
     baseUrl: 'https://api.oxsid.nomoredomains.rocks',
-    authorization: '08c90c1a-1998-40ee-b8a2-c5f50d26b954'
+    credentials: 'include',
 });
 
 export default api;
