@@ -5,6 +5,7 @@ const NOT_FOUND_ERROR_CODE = 404;
 const EXISTING_EMAIL_ERROR_CODE = 409;
 const DEFAULT_ERROR_CODE = 500;
 const OK_STATUS_CODE = 200;
+const CREATED_STATUS_CODE = 201;
 const defaultErrorMessage = { message: 'An error occurred on the server' };
 
 const regex = /(?:https?:\/\/)?(?:[\w.]+)\.(?:[a-z]{2,6}\.?)(?:\/[\w.]*)*\/?/;
@@ -19,4 +20,5 @@ module.exports = {
   EXISTING_EMAIL_ERROR_CODE,
   regex,
   UNAUTHORIZED_ERROR_CODE,
+  CREATED_STATUS_CODE,
 };

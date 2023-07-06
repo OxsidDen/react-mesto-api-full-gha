@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { ValidationError } = require('mongoose').Error;
 const User = require('../models/user');
-const { OK_STATUS_CODE } = require('../utils/utils');
+const { OK_STATUS_CODE, CREATED_STATUS_CODE } = require('../utils/utils');
 const { NotFoundErr } = require('../error/NotFoundError');
 const { IncorrectDataErr } = require('../error/IncorrectDataError');
 const { ExistingError } = require('../error/ExistingError');
@@ -35,7 +35,7 @@ const createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => res.status(OK_STATUS_CODE).send({ data: user }))
+    .then((user) => res.status(CREATED_STATUS_CODE).send({ data: user }))
     .catch((err) => {
       if (err.code === 11000) {
         next(new ExistingError('User with this email is already registered'));

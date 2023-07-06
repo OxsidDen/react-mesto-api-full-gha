@@ -3,7 +3,7 @@ const { AccessErr } = require('../error/AccessError');
 const { NotFoundErr } = require('../error/NotFoundError');
 const { IncorrectDataErr } = require('../error/IncorrectDataError');
 const Card = require('../models/card');
-const { OK_STATUS_CODE } = require('../utils/utils');
+const { OK_STATUS_CODE, CREATED_STATUS_CODE } = require('../utils/utils');
 
 const getOwnerId = (req) => req.user._id;
 
@@ -17,7 +17,7 @@ const postCard = (req, res, next) => {
   const { name, link } = req.body;
   const owner = getOwnerId(req);
   Card.create({ name, link, owner })
-    .then((card) => res.status(OK_STATUS_CODE).send({ data: card }))
+    .then((card) => res.status(CREATED_STATUS_CODE).send({ data: card }))
     .catch((err) => {
       if (err instanceof ValidationError) {
         next(new IncorrectDataErr('Check the correctness of the data'));
