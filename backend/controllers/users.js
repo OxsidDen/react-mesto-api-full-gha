@@ -110,6 +110,10 @@ const getMyUser = (req, res, next) => {
     .catch(next);
 };
 
+const signout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход выполнен успешно.' });
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -118,4 +122,5 @@ module.exports = {
   updateAvatar,
   login,
   getMyUser,
+  signout,
 };

@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const app = express();
 const { PORT = 3000 } = process.env;
 
-mogoose.connect('mongodb://localhost:27017/mestodb');
+mogoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
 app.use(cors({
   origin: ['https://oxsid.nomoredomains.rocks', 'https://api.oxsid.nomoredomains.rocks', 'https://localhost:3000'],
