@@ -9,33 +9,32 @@ class Api {
         return fetch(this._baseUrl + '/users/me', {
             credentials: this._credentials,
             headers: {
-                authorization:  this._authorization
-            }
+                "Content-Type": "application/json",
+            },
         })
         .then(res => this._chekStatus(res))
     };
     
     getCards = () => {
        return  fetch(this._baseUrl + '/cards', {
-        credentials: this._credentials,
-        headers: {
-                authorization:  this._authorization
-            }
-        })
+            credentials: this._credentials,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })  
         .then(res => this._chekStatus(res))
     };
     
-    changeProfile = (data) => {
+    changeProfile = (name, about) => {
         return  fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
             credentials: this._credentials,
             headers: {
-                authorization: this._authorization,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data.name,
-                about: data.about
+                name: name,
+                about: about
             }) 
          })
             .then(res => this._chekStatus(res))
@@ -46,7 +45,6 @@ class Api {
             method: 'POST',
             credentials: this._credentials,
             headers: {
-                authorization:  this._authorization,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -62,8 +60,8 @@ class Api {
             method: 'DELETE',
             credentials: this._credentials,
             headers: {
-               authorization:  this._authorization,
-            }
+                "Content-Type": "application/json",
+            },
         })
         .then(res => this._chekStatus(res))
     };
@@ -73,7 +71,6 @@ class Api {
         method: 'PATCH',
         credentials: this._credentials,
         headers: {
-            authorization: this._authorization,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -88,8 +85,8 @@ class Api {
             method: 'PUT',
             credentials: this._credentials,
             headers: {
-                authorization: this._authorization,
-            }
+                "Content-Type": "application/json",
+            },
         })
         .then(res => this._chekStatus(res))
     }
@@ -99,8 +96,8 @@ class Api {
             method: 'DELETE',
             credentials: this._credentials,
             headers: {
-                authorization: this._authorization,
-            }
+                "Content-Type": "application/json",
+            },
         })
             .then(res => this._chekStatus(res))
     }
@@ -111,8 +108,8 @@ class Api {
                 method: 'PUT',
                 credentials: this._credentials,
                 headers: {
-                    authorization: this._authorization,
-                }
+                    "Content-Type": "application/json",
+                },
             })
             .then(res => this._chekStatus(res))
         }
@@ -121,8 +118,8 @@ class Api {
                 method: 'DELETE',
                 credentials: this._credentials,
                 headers: {
-                    authorization: this._authorization,
-                }
+                    "Content-Type": "application/json",
+                },
             })
                 .then(res => this._chekStatus(res))
         }

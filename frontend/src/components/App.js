@@ -8,7 +8,7 @@ import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/Api";
-import {CurrentUserContext, user} from "../contexts/CurrentUserContext"
+import {CurrentUserContext} from "../contexts/CurrentUserContext"
 import React from 'react';
 import { Route, Routes, useNavigate} from 'react-router-dom';
 import Login from './Login.js';
@@ -23,13 +23,16 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen ] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState(user);
+  const [currentUser, setCurrentUser] = useState({
+    name: "Жак-Ив Кусто",
+    about: "Исследователь океана"
+  });
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate(false);
   const [isInfoToolOpen, setInfoToolOpen] = useState(false)
   const [isCorect, setCorect] = useState(false);
-  const[email, setEmail] = useState('')
+  const [email, setEmail] = useState('')
   
   useEffect(() => {
     handleTokenCheck();
@@ -71,6 +74,7 @@ function App() {
             setLoggedIn(true);
             setEmail(res.data.email)
             navigate("/", {replace: true})
+            console.log(res)
           }
         })
         .catch((err) => { 
@@ -121,10 +125,15 @@ function App() {
         console.log(err); 
     }); 
   }
-  function handleUpdateAvatar(info){
-    api.changeAvatar(info)
+  function handleUpdateAvatar({name, about}){
+    api.changeAvatar(name, about)
       .then((res) => {
-        setCurrentUser(res)
+        console.log(name, about)
+        setCurrentUser({
+          ...currentUser,
+          name: name,
+          about: about,
+        });
         closeAllPopups()
       })
       .catch((err) => {
@@ -157,7 +166,7 @@ function App() {
   function handleLogin(email, password){
     auth.authorize(email, password)
       .then((data) => {
-        if (data.token){
+        if (data._id){
           navigate('/', {replace: true});
           setLoggedIn(true);
           setCorect(true);
