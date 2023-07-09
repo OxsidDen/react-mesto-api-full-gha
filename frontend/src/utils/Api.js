@@ -1,9 +1,9 @@
 class Api {
 
-    constructor({baseUrl, credentials}){
-        this._baseUrl = baseUrl;
-        this._credentials = credentials;
-    }
+    constructor(options) {
+        this._credentials = options.credentials;
+        this._url = options.url;
+      }
 
     getProfile = () => {
         return fetch(this._baseUrl + '/users/me', {
@@ -67,14 +67,14 @@ class Api {
     };
 
     changeAvatar = (data) => {
-    return  fetch(this._baseUrl + '/users/me/avatar', {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         credentials: this._credentials,
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            avatar: data.avatar
+            avatar: data,
         }) 
     })
         .then(res => this._chekStatus(res))
@@ -130,8 +130,8 @@ class Api {
     }
 }
 const api = new Api({
-    baseUrl: 'https://api.oxsid.nomoredomains.rocks',
     credentials: 'include',
+    url: 'https://api.oxsid.nomoredomains.rocks',
 });
 
 export default api;

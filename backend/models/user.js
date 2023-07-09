@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const validation = require('validator');
+const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const { regex } = require('../utils/utils');
 const { AuthorisationErr } = require('../error/AuthorisationError');
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
       validator(avatar) {
-        regex.test(avatar);
+        return regex.test(avatar);
       },
       message: 'Link is not a valid',
     },
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     require: [true, 'User email required'],
     validate: {
       validator(email) {
-        validation.isEmail(email);
+        return isEmail(email);
       },
       message: 'Email is not a valid',
     },

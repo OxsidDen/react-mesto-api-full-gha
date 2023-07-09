@@ -56,6 +56,7 @@ const updateProfile = (req, res, next) => {
       if (!user) {
         throw new NotFoundErr('User by specified _id not found');
       }
+      console.log(user);
       res.status(OK_STATUS_CODE).send({ data: user });
     })
     .catch((err) => {

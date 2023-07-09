@@ -42,6 +42,7 @@ function App() {
     if(isLoggedIn === true){
       api.getCards()
       .then((data) => {
+        console.log(data)
           setCards(
               data.map((item) => ({
                   _id: item._id,
@@ -53,10 +54,11 @@ function App() {
           )
       })
       .catch((err) => {
-          console.log(err); 
+          console.log(err);
       }); 
       api.getProfile()
       .then((data) => {
+        console.log(data)
         setCurrentUser(data);
       })
       .catch((err) => { 
@@ -68,18 +70,19 @@ function App() {
   const handleTokenCheck = () => {
     if (localStorage.getItem('jwt')){
       const jwt = localStorage.getItem('jwt');
-      auth.checkToken(jwt)
+      if(jwt){
+        auth.checkToken()
         .then((res) => {
           if (res){
             setLoggedIn(true);
-            setEmail(res.data.email)
             navigate("/", {replace: true})
-            console.log(res)
           }
         })
         .catch((err) => { 
           console.log(err); 
         }) 
+      }
+      
       }
   }
 
@@ -115,24 +118,27 @@ function App() {
     }); 
   }
 
-  function handleUpdateUser(info){
-    api.changeProfile(info)
+  function handleUpdateUser(name, about){
+    api.changeProfile(name, about)
       .then((res) => {
-        setCurrentUser(res)
+        setCurrentUser({
+          ...currentUser,
+          name: name,
+          about: about,
+        });
         closeAllPopups()
       })
       .catch((err) => {
         console.log(err); 
     }); 
   }
-  function handleUpdateAvatar({name, about}){
-    api.changeAvatar(name, about)
+  function handleUpdateAvatar({avatar}){
+    api.changeAvatar(avatar)
       .then((res) => {
-        console.log(name, about)
+        console.log(res)
         setCurrentUser({
           ...currentUser,
-          name: name,
-          about: about,
+          avatar: avatar,
         });
         closeAllPopups()
       })

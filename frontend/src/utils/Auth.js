@@ -27,7 +27,10 @@ export const authorize = (email, password) => {
         Accept: 'application/json',
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({
+            password: password,
+            email: email,
+          }),
   })
     .then((res) =>{
         if (res.ok) {
@@ -37,7 +40,7 @@ export const authorize = (email, password) => {
         })
     .then((data) => {
         if (data){
-            localStorage.setItem('jwt', data.token);
+            localStorage.setItem('jwt', data);            
             return data;
         }
     })
@@ -45,14 +48,14 @@ export const authorize = (email, password) => {
 };
 export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
-        method: 'GET',
+        method: "GET",
         credentials: 'include',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         }
     })
-    .then(res => res.json())
-    .then(data => data)
+    .then((res) => res.json())
+    .then((data) => data)
     .catch(err => console.log(err))
 }

@@ -7,6 +7,7 @@ import React from 'react';
 function Main(props) {
     
     const currentUser = React.useContext(CurrentUserContext);
+    
     return(
         <main>
             <section className="profile">
